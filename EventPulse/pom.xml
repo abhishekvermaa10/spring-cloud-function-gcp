@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.16</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.abhishekvermaa10</groupId>
+    <artifactId>EventPulse</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>EventPulse</name>
+    <description>Spring Cloud Function on Google Cloud Platform</description>
+    <properties>
+        <java.version>25</java.version>
+        <spring-cloud.version>2025.0.3</spring-cloud.version>
+        <spring-cloud-function-adapter-gcp.version>4.3.4</spring-cloud-function-adapter-gcp.version>
+        <function-maven-plugin.version>0.10.1</function-maven-plugin.version>
+    </properties>
+    <dependencies>
+        <!-- Core Spring Boot support -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!-- Runs Spring Cloud Function on local server -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-function-web</artifactId>
+        </dependency>
+        <!-- Runs Spring Cloud Function on Google Cloud Platform -->
+        <!--
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-function-adapter-gcp</artifactId>
+        </dependency>
+        -->
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-function-adapter-gcp</artifactId>
+                        <version>${spring-cloud-function-adapter-gcp.version}</version>
+                    </dependency>
+                </dependencies>
+                -->
+            </plugin>
+            <!-- Supports local Functions Framework execution and deployment-related workflows for the configured GCP function target. -->
+            <!--
+            <plugin>
+                <groupId>com.google.cloud.functions</groupId>
+                <artifactId>function-maven-plugin</artifactId>
+                <version>${function-maven-plugin.version}</version>
+                <configuration>
+                    <functionTarget>org.springframework.cloud.function.adapter.gcp.GcfJarLauncher</functionTarget>
+                </configuration>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+</project>
