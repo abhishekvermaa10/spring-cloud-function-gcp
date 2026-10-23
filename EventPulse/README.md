@@ -49,8 +49,8 @@ Check `pom.xml` for the exact Spring Boot, Spring Cloud Function, and Java versi
 ## Clone the project
 
 ``` bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd EventPulse
+git clone https://github.com/abhishekvermaa10/spring-cloud-function-gcp.git
+cd spring-cloud-function-gcp/EventPulse
 ```
 
 ## Project structure
