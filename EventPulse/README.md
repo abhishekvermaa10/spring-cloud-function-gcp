@@ -220,8 +220,7 @@ Before packaging or deploying, verify the GCP configuration with the Google Func
 On macOS/Linux:
 
 ``` bash
-SPRING_CLOUD_FUNCTION_DEFINITION=publishEvents
-mvn function:run
+SPRING_CLOUD_FUNCTION_DEFINITION=publishEvents mvn function:run
 ```
 
 On Windows PowerShell:
