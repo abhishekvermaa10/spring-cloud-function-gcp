@@ -136,23 +136,18 @@ Example response shape:
 ``` json
 [
     {
-        "id": "EVT-101",
+        "id": "1",
         "name": "Java2Days",
+        "organizerName": "Java2Days",
         "startDate": "2022-03-08",
         "endDate": "2022-03-11",
         "location": "Online"
     },
     {
-        "id": "EVT-102",
-        "name": "Devoxx",
-        "startDate": "2026-10-05",
-        "endDate": "2026-10-09",
-        "location": "Antwerp, Belgium"
-    },
-    {
-        "id": "EVT-103",
-        "name": "GDG Cloud Chandigarh - DevFest & Code for Communities 2026",
-        "startDate": "2026-10-23",
+        "id": "2",
+        "name": "DevFest",
+        "organizerName": "GDG Cloud Chandigarh",
+        "startDate": "2026-10-24",
         "endDate": "2026-10-24",
         "location": "Chandigarh, India"
     }
@@ -169,7 +164,7 @@ Use an event ID returned by the Supplier:
 curl.exe --location --request POST "http://localhost:8080/registerParticipant" \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "eventId": "EVT-101",
+    "eventId": 1,
     "emailId": "participant@scaleupindiayt.com"
 }'
 ```
@@ -188,7 +183,7 @@ Send a registration request:
 curl.exe --location --request POST 'http://localhost:8080/registerParticipant,sendRegistrationEmail' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "eventId": "EVT-101",
+    "eventId": 1,
     "emailId": "participant@scaleupindiayt.com"
 }'
 ```
@@ -262,13 +257,13 @@ The expected artifact path is `target/EventPulse.jar`. If the JAR is not present
 
 Open [Google Cloud Console](https://console.cloud.google.com/) and start **Cloud Shell**. The commands below run inside Cloud Shell.
 
-Choose a globally unique project ID dedicated to this demo. The examples use `eventpulse-demo`; replace it if that ID is unavailable or you prefer another ID.
+Choose a globally unique project ID dedicated to this demo. The examples use `event-pulse-demo`; replace it if that ID is unavailable or you prefer another ID.
 
 ### A. Create and select the project
 
 ``` bash
-gcloud projects create eventpulse-demo --name="EventPulse Demo"
-gcloud config set project eventpulse-demo
+gcloud projects create event-pulse-demo --name="EventPulse Demo"
+gcloud config set project event-pulse-demo
 ```
 
 If your organization requires a parent organization or folder, follow your organization's project-creation requirements. If you already created a project, skip the creation command and set the correct project instead.
@@ -284,14 +279,14 @@ gcloud billing accounts list
 Link an active billing account to the project, replacing the placeholder with an account ID from the previous command:
 
 ``` bash
-gcloud billing projects link eventpulse-demo \
+gcloud billing projects link event-pulse-demo \
   --billing-account=YOUR_BILLING_ACCOUNT_ID
 ```
 
 Verify billing:
 
 ``` bash
-gcloud billing projects describe eventpulse-demo
+gcloud billing projects describe event-pulse-demo
 ```
 
 Confirm that the output reports `billingEnabled: true`. Billing is required for the resources used by this demo. Charges may apply while resources exist, so follow the cleanup section at the end.
@@ -307,7 +302,7 @@ gcloud services enable \
   logging.googleapis.com \
   storage.googleapis.com \
   eventarc.googleapis.com \
-  --project=eventpulse-demo
+  --project=event-pulse-demo
 ```
 
 Google may enable some APIs automatically during deployment. Enabling them ahead of time helps surface permission and billing issues early. If an API is unavailable or your account lacks permission, follow the error message and your organization's Google Cloud setup requirements.
@@ -323,8 +318,8 @@ The examples use `us-central1`. You can choose another region closer to your aud
 Set the project and region once in Cloud Shell:
 
 ``` bash
-gcloud config set project eventpulse-demo
-PROJECT_ID=eventpulse-demo
+gcloud config set project event-pulse-demo
+PROJECT_ID=event-pulse-demo
 REGION=us-central1
 ```
 
@@ -454,8 +449,8 @@ curl.exe --location --request GET "SUPPLIER_FUNCTION_URL"
 curl.exe --location --request POST "REGISTRATION_FUNCTION_URL" \
   -H "Content-Type: application/json" \
   -d '{
-    "eventId": "EVT-101",
-    "emailId": "student@scaleupindiayt.com"
+    "eventId": 1,
+    "emailId": "participant@scaleupindiayt.com"
   }'
 ```
 
@@ -467,8 +462,8 @@ Repeat the same request to observe the duplicate-registration response **when th
 curl.exe --location --request POST "REGISTER_AND_NOTIFY_FUNCTION_URL" \
   -H "Content-Type: application/json" \
   -d '{
-    "eventId": "EVT-101",
-    "emailId": "student@scaleupindiayt.com"
+    "eventId": 1,
+    "emailId": "participant@scaleupindiayt.com"
   }'
 ```
 
@@ -485,7 +480,7 @@ gcloud functions logs read eventpulse-register-and-notify \
 
 ## Clean up Google Cloud Platform
 
-**Do not skip cleanup.** After you finish the demo, delete all three functions and then delete the dedicated `eventpulse-demo` project. Deleting the project shuts down its resources, but charges already incurred may still appear on your bill. Do not use this project for unrelated work.
+**Do not skip cleanup.** After you finish the demo, delete all three functions and then delete the dedicated `event-pulse-demo` project. Deleting the project shuts down its resources, but charges already incurred may still appear on your bill. Do not use this project for unrelated work.
 
 Confirm the active project and region first:
 
@@ -497,7 +492,7 @@ echo "$REGION"
 Make sure the project is the dedicated demo project. If needed, set the variables again:
 
 ``` bash
-PROJECT_ID=eventpulse-demo
+PROJECT_ID=event-pulse-demo
 REGION=us-central1
 gcloud config set project "$PROJECT_ID"
 ```

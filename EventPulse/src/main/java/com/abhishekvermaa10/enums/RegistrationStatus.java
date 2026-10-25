@@ -1,4 +1,4 @@
-package com.abhishekvermaa10.model;
+package com.abhishekvermaa10.enums;
 
 public enum RegistrationStatus {
 

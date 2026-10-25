@@ -3,8 +3,9 @@ package com.abhishekvermaa10.model;
 import java.time.LocalDate;
 
 public record ConferenceEvent(
-        String id,
+        Integer id,
         String name,
+        String organizerName,
         LocalDate startDate,
         LocalDate endDate,
         String location

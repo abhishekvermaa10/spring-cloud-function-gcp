@@ -9,6 +9,6 @@ public interface EventRepository {
 
     List<ConferenceEvent> findAll();
 
-    Optional<ConferenceEvent> findById(String id);
+    Optional<ConferenceEvent> findById(Integer id);
 
 }

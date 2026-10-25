@@ -12,18 +12,18 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
     private final ConcurrentHashMap<String, String> registrations = new ConcurrentHashMap<>();
 
     @Override
-    public String findRegistrationId(String eventId, String emailId) {
+    public String findRegistrationId(Integer eventId, String emailId) {
         return registrations.get(registrationKey(eventId, emailId));
     }
 
     @Override
-    public String register(String eventId, String emailId) {
+    public String register(Integer eventId, String emailId) {
         String registrationId = UUID.randomUUID().toString();
         registrations.put(registrationKey(eventId, emailId), registrationId);
         return registrationId;
     }
 
-    private String registrationKey(String eventId, String emailId) {
+    private String registrationKey(Integer eventId, String emailId) {
         return eventId + ":" + emailId.toLowerCase();
     }
 

@@ -3,7 +3,7 @@ package com.abhishekvermaa10.service.impl;
 import com.abhishekvermaa10.model.ConferenceEvent;
 import com.abhishekvermaa10.model.RegistrationRequest;
 import com.abhishekvermaa10.model.RegistrationResponse;
-import com.abhishekvermaa10.model.RegistrationStatus;
+import com.abhishekvermaa10.enums.RegistrationStatus;
 import com.abhishekvermaa10.repository.EventRepository;
 import com.abhishekvermaa10.repository.RegistrationRepository;
 import com.abhishekvermaa10.service.EventService;
@@ -33,11 +33,10 @@ public class EventServiceImpl implements EventService {
         if (request == null) {
             return new RegistrationResponse(null, null, null, RegistrationStatus.INVALID_REQUEST);
         }
-        if (request.eventId() == null || request.eventId().isBlank()
-                || request.emailId() == null || request.emailId().isBlank()) {
+        if (request.eventId() == null || request.emailId() == null || request.emailId().isBlank()) {
             return new RegistrationResponse(null, request.eventId(), request.emailId(), RegistrationStatus.INVALID_REQUEST);
         }
-        String eventId = request.eventId().trim();
+        Integer eventId = request.eventId();
         String emailId = request.emailId().trim();
         if (eventRepository.findById(eventId).isEmpty()) {
             return new RegistrationResponse(null, eventId, emailId, RegistrationStatus.EVENT_NOT_FOUND);

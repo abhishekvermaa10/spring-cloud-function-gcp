@@ -3,7 +3,7 @@ package com.abhishekvermaa10.config;
 import com.abhishekvermaa10.model.ConferenceEvent;
 import com.abhishekvermaa10.model.RegistrationRequest;
 import com.abhishekvermaa10.model.RegistrationResponse;
-import com.abhishekvermaa10.model.RegistrationStatus;
+import com.abhishekvermaa10.enums.RegistrationStatus;
 import com.abhishekvermaa10.service.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
